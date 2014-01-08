@@ -21,7 +21,7 @@ gulp.task('minify', function() {
 See the [html-minifer docs](https://github.com/kangax/html-minifier) for options.
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt](http://gruntjs.com/).
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality.
 
 ## Author
 
@@ -29,5 +29,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 + [twitter/jonschlinkert](http://twitter.com/jonschlinkert)
 
 ## License
-Copyright (c) 2013 Jon Schlinkert
+Copyright (c) 2014 Jon Schlinkert
 Licensed under the MIT license.

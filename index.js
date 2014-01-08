@@ -2,7 +2,7 @@
  * gulp-htmlmin
  * https://github.com/jonschlinkert/gulp-htmlmin
  *
- * Copyright (c) 2013 Jon Schlinkert
+ * Copyright (c) 2014 Jon Schlinkert
  * Licensed under the MIT license.
  */
 
@@ -20,7 +20,7 @@ module.exports = function (opts) {
     try {
       file.contents = new Buffer(htmlmin.minify(String(file.contents), opts));
     } catch (err) {
-      console.warn('Error caught from html-minify: ' + e.message + '.');
+      console.warn('Error caught from html-minify: ' + err.message + '.');
     }
     cb(null, file);
   });

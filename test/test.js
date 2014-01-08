@@ -2,7 +2,7 @@
  * gulp-htmlmin
  * https://github.com/jonschlinkert/gulp-htmlmin
  *
- * Copyright (c) 2013 Jon Schlinkert
+ * Copyright (c) 2014 Jon Schlinkert
  * Licensed under the MIT license.
  */
 
