@@ -32,7 +32,8 @@
   "dependencies": {
     "event-stream": "~3.0.20",
     "html-minifier": "~0.5.4",
-    "zlib": "~1.0.5"
+    "zlib": "~1.0.5",
+    "gulp-util": "~2.2.14"
   },
   "keywords": [
     "gulpplugin",
