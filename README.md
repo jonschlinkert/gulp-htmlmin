@@ -12,9 +12,9 @@ var gulp = require('gulp');
 var htmlmin = require('gulp-htmlmin');
 
 gulp.task('minify', function() {
-  gulp.src('./src/foo.html')
+  gulp.src('./src/*.html')
     .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.folder('./dist/foo.html'))
+    .pipe(gulp.dest('./dist'))
 });
 ```
 
