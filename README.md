@@ -1,4 +1,4 @@
-# gulp-htmlmin [![NPM version](https://badge.fury.io/js/gulp-htmlmin.png)](http://badge.fury.io/js/gulp-htmlmin)
+# gulp-htmlmin [![NPM version](https://badge.fury.io/js/gulp-htmlmin.png)](http://badge.fury.io/js/gulp-htmlmin) [![Build Status](https://travis-ci.org/jonschlinkert/gulp-htmlmin.png?branch=master)](https://travis-ci.org/jonschlinkert/gulp-htmlmin)
 
 > Minify HTML.
 
