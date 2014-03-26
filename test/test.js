@@ -12,108 +12,100 @@
 
 var fs = require('fs');
 var path = require('path');
-var gulp = require('gulp');
 var gutil = require('gulp-util');
 var expect = require('chai').expect;
-var htmlmin = require('html-minifier');
 var minify = require('../index.js');
-var es = require('event-stream');
 
 
-var expectedFilename =  path.join(__dirname, './fixtures/index.html');
-var actualFilename = path.join(__dirname, './actual/index.html');
+var expectedNormal = fs.readFileSync(path.join(__dirname, 'expected/normal.html'));
+var expectedCollapse = fs.readFileSync(path.join(__dirname, 'expected/collapse.html'));
 
-var src = path.join(__dirname, './fixtures/*.html');
-var dest = path.join(__dirname, './actual');
+var fakeFile = new gutil.File({
+  base: path.join(__dirname, 'fixtures'),
+  cwd: __dirname,
+  path: path.join(__dirname, 'fixtures/index.html'),
+  contents: fs.readFileSync(path.join(__dirname, 'fixtures/index.html'))
+});
+
+
+var contents = '<<div>error in this file</div>';
+var errorFile = new gutil.File({
+  base: path.join(__dirname, 'fixtures'),
+  cwd: __dirname,
+  path: path.join(__dirname, 'fixtures/error.html'),
+  contents: new Buffer(contents)
+});
+
       
 describe('gulp-htmlmin minification', function () {
-  describe('gulp-htmlmin', function () {
 
-    it('should minify my HTML files', function (done) {
-      gulp.src(src)
-        .pipe(minify())
-        .pipe(gulp.dest(dest))
-        .pipe(es.map(function (file) {
-          var expected = htmlmin.minify(fs.readFileSync(expectedFilename, 'utf-8'));
-          var actual = fs.readFileSync(actualFilename, 'utf-8');
-          expect(actual).to.equal(expected);
-          done();
-        }));
+  it('should minify my HTML files', function (done) {
+
+    var stream = minify();
+    stream.once('data', function(newFile){
+      expect(newFile).to.not.be.null;
+      expect(String(newFile.contents)).to.equal(String(expectedNormal));
+      done();
+    });
+    stream.write(fakeFile);
+  });
+
+  it('should collapse whitespace', function (done) {
+    var stream = minify({collapseWhitespace: true});
+
+    stream.once('data', function(newFile){
+      expect(newFile).to.not.be.null;
+      expect(String(newFile.contents)).to.equal(String(expectedCollapse));
+      done();
+    });
+    stream.write(fakeFile);
+  });
+
+
+
+  it('should return file.contents as a buffer', function (done) {
+    var stream = minify();
+
+    stream.once('data', function(newFile){
+      expect(newFile.contents).to.be.an.instanceOf(Buffer);
+      done();
+    });
+    stream.write(fakeFile);
+  });
+
+  it('should throw a gulp error', function(done) {
+    
+
+    var stream = minify();
+
+    stream.on('error', function (err) {
+      expect(err.message).to.equal('Parse Error: ' + contents);
+      done();
     });
 
-    it('should collapse whitespace', function (done) {
-      gulp.src(src)
-        .pipe(minify({collapseWhitespace: true}))
-        .pipe(gulp.dest(dest))
-        .pipe(es.map(function (file) {
-          var expected = htmlmin.minify(fs.readFileSync(expectedFilename, 'utf-8'), {collapseWhitespace: true});
-          var actual = fs.readFileSync(actualFilename, 'utf-8');
-          expect(actual).to.equal(expected);
-          done();
-        }));
+    stream.on('end', function () {
+      done();
     });
 
-    it('should return file.contents as a buffer', function (done) {
-      gulp.src(src)
-        .pipe(minify())
-        .pipe(gulp.dest(dest))
-        .pipe(es.map(function (file) {
-          expect(file.contents).to.be.an.instanceof(Buffer);
-          done();
-        }));
+    stream.write(errorFile);
+    stream.end();
+  });
+
+  it('should throw a gulp error with a stack trace', function(done) {
+
+    var stream = minify({showStack: true});
+
+    stream.on('error', function (err) {
+      expect(err.message).to.equal('Parse Error: ' + contents);
+      expect(err.showStack).to.be.true;
+      done();
     });
 
-    it('should throw a gulp error', function(done) {
-      var contents = '<<div>error in this file</div>';
-      var file = new gutil.File({
-        base: path.join(__dirname, './fixtures'),
-        cwd: __dirname,
-        path: path.join(__dirname, './fixtures/error.html'),
-        contents: new Buffer(contents)
-      });
-
-      var stream = minify();
-
-      stream.on('error', function (err) {
-        if (err) {
-          expect(err.message).to.equal('Parse Error: ' + contents);
-        }
-        done();
-      });
-
-      stream.on('end', function () {
-        done();
-      });
-
-      stream.write(file);
-      stream.end();
+    stream.on('end', function () {
+      done();
     });
 
-    it('should throw a gulp error with a stack trace', function(done) {
-      var contents = '<<div>error in this file</div>';
-      var file = new gutil.File({
-        base: path.join(__dirname, './fixtures'),
-        cwd: __dirname,
-        path: path.join(__dirname, './fixtures/error.html'),
-        contents: new Buffer(contents)
-      });
-
-      var stream = minify({showStack: true});
-
-      stream.on('error', function (err) {
-        if (err) {
-          expect(err.message).to.equal('Parse Error: ' + contents);
-          expect(err.showStack).to.be.true;
-        }
-        done();
-      });
-
-      stream.on('end', function () {
-        done();
-      });
-
-      stream.write(file);
-      stream.end();
-    });
+    stream.write(errorFile);
+    stream.end();
   });
 });
