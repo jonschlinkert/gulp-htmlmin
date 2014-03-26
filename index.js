@@ -7,7 +7,6 @@
  */
 
 
-var Buffer = require('buffer').Buffer;
 var es = require('event-stream');
 var htmlmin = require('html-minifier');
 var gutil = require('gulp-util');
