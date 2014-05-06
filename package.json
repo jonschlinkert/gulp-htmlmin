@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "event-stream": "~3.0.20",
-    "html-minifier": "~0.5.4",
+    "html-minifier": "~0.6.0",
     "gulp-util": "~2.2.14"
   },
   "keywords": [
