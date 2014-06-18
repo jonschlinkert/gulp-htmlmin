@@ -36,7 +36,7 @@ var errorFile = new gutil.File({
   contents: new Buffer(contents)
 });
 
-      
+
 describe('gulp-htmlmin minification', function () {
 
   it('should minify my HTML files', function (done) {
@@ -74,7 +74,7 @@ describe('gulp-htmlmin minification', function () {
   });
 
   it('should throw a gulp error', function(done) {
-    
+
 
     var stream = minify();
 
