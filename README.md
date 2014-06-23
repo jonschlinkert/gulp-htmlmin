@@ -1,9 +1,13 @@
-# gulp-htmlmin [![NPM version](https://badge.fury.io/js/gulp-htmlmin.png)](http://badge.fury.io/js/gulp-htmlmin) [![Build Status](https://travis-ci.org/jonschlinkert/gulp-htmlmin.png?branch=master)](https://travis-ci.org/jonschlinkert/gulp-htmlmin)
+# gulp-html-minifier
 
-> Minify HTML.
+> Minifies HTML using the html-minifier module. See [html-minifer](https://github.com/kangax/html-minifier) 
 
 ## Getting Started
-Install the module with: `npm install gulp-htmlmin`
+Install the module with: 
+
+````
+npm install gulp-html-minifier
+`````
 
 ## Usage
 
@@ -16,17 +20,21 @@ gulp.task('minify', function() {
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest('./dist'))
 });
-```
+````
 
-See the [html-minifer docs](https://github.com/kangax/html-minifier) for options.
+See the [html-minifer docs](https://github.com/kangax/html-minifier) for complete options.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality.
 
-## Author
+## Original Author
 
 + [github/jonschlinkert](https://github.com/jonschlinkert)
 + [twitter/jonschlinkert](http://twitter.com/jonschlinkert)
+
+## Fork Author
+
++ [github/origin1tech](https://github.com/origin1tech)
 
 ## License
 Copyright (c) 2014 Jon Schlinkert
