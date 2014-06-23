@@ -13,11 +13,24 @@ npm install gulp-html-minifier
 
 ```js
 var gulp = require('gulp');
-var htmlmin = require('gulp-htmlmin');
+var htmlmin = require('gulp-html-minifier');
 
 gulp.task('minify', function() {
   gulp.src('./src/*.html')
     .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('./dist'))
+});
+````
+
+###Ignore Path
+
+```js
+var gulp = require('gulp');
+var htmlmin = require('gulp-html-minifier');
+
+gulp.task('minify', function() {
+  gulp.src('./src/assets/*.html')
+    .pipe(htmlmin({collapseWhitespace: true, ignorePath: '/assets' }))
     .pipe(gulp.dest('./dist'))
 });
 ````
