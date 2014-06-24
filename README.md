@@ -11,6 +11,12 @@ npm install gulp-html-minifier
 
 ## Usage
 
+Along with the default options for html-minifier gulp-html-minifier exposes two additional handy methods. You can ignore
+paths within the filepath preventing the need to pipe in a rename. This is similar to what gulp-inject does. 
+
+Also you can pass in the environment to simply output your html to the destination ignoring the above paths if any but
+minification is not applied. This is helpful and probably what you want in the development process.
+
 ```js
 var gulp = require('gulp');
 var htmlmin = require('gulp-html-minifier');
@@ -22,7 +28,7 @@ gulp.task('minify', function() {
 });
 ````
 
-###Ignore Path
+##Ignore Path
 
 ```js
 var gulp = require('gulp');
@@ -34,6 +40,17 @@ gulp.task('minify', function() {
     .pipe(gulp.dest('./dist'))
 });
 ````
+
+##Development Mode
+
+If you pass into your options minification is skipped however ignore path will still be applied. This makes viewing
+source and element inspection easier as you probably don't want minified html when you're developing your application.
+
+````js
+options.env = 'development'
+````
+
+##Complete Options
 
 See the [html-minifer docs](https://github.com/kangax/html-minifier) for complete options.
 
