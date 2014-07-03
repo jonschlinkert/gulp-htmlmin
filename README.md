@@ -3,7 +3,7 @@
 > Minify HTML.
 
 ## Getting Started
-Install the module with: `npm install gulp-htmlmin`
+Install the module with: `npm install gulp-htmlmin --save-dev`
 
 ## Usage
 
