@@ -11,9 +11,5 @@
   "boss": true,
   "eqnull": true,
   "node": true,
-  "globals": {
-    "describe": true,
-    "it": true,
-    "before": true
-  }
+  "mocha": true
 }
