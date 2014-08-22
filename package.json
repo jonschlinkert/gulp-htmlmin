@@ -28,13 +28,13 @@
     "test": "mocha --reporter spec"
   },
   "devDependencies": {
-    "chai": "~1.8.1",
-    "mocha": "~1.16.1"
+    "chai": "~1.9.1",
+    "mocha": "~1.21.4"
   },
   "dependencies": {
-    "event-stream": "~3.0.20",
+    "gulp-util": "~3.0.0",
     "html-minifier": "~0.6.0",
-    "gulp-util": "~2.2.14"
+    "map-stream": "^0.1.0"
   },
   "keywords": [
     "gulpplugin",
