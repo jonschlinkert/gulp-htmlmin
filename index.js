@@ -12,8 +12,7 @@ var es = require('event-stream'),
 module.exports = function (options) {
 	options = options || {
 		showStack: false,
-	};
-	options.env = options.env || 'development';
+	};	
 	// snipets stripPath, toArray & unixify based on gulp-inject
 	// https://github.com/klei/gulp-inject/blob/master/index.js
 	function ignorePath (basedir, filepath) {
