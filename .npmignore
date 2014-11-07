@@ -1,3 +1,4 @@
+.DS_Store
 build
 lib-cov
 *.seed
@@ -12,5 +13,7 @@ pids
 logs
 results
 
+npm-debug.log
+node_modules
 *.sublime*
 tmp
