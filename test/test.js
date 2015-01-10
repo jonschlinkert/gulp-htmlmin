@@ -30,7 +30,6 @@ var errorFile = new File({
 
 
 describe('gulp-htmlmin in buffer mode', function () {
-
   it('should ignore empty file', function (done) {
     var stream = minify();
     stream.on('data', function(newFile){

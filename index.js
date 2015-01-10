@@ -1,9 +1,9 @@
 'use strict';
 
 var BufferStreams = require('bufferstreams');
+var htmlmin = require('html-minifier');
 var extend = require('extend-shallow');
 var gutil = require('gulp-util');
-var htmlmin = require('html-minifier');
 var through = require('through2');
 
 module.exports = function (options) {
@@ -16,22 +16,18 @@ module.exports = function (options) {
     }
 
     function minifyHtml(buf, done) {
-      var minified;
-
       try {
-        minified = htmlmin.minify(String(buf), opts);
+        done(null, new Buffer(htmlmin.minify(String(buf), opts)));
       } catch (err) {
         done(new gutil.PluginError('gulp-htmlmin', err, opts));
         return;
       }
-
-      done(null, new Buffer(minified));
-    };
+    }
 
     var self = this;
 
     if (file.isStream()) {
-      file.contents = file.contents.pipe(new BufferStreams(function(none, buf, done) {
+      file.contents.pipe(new BufferStreams(function(none, buf, done) {
         minifyHtml(buf, function(err, contents) {
           if (err) {
             self.emit('error', err);
