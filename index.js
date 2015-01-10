@@ -6,10 +6,10 @@
  * Licensed under the MIT license.
  */
 
-
-var mapStream = require('map-stream');
-var htmlmin = require('html-minifier');
+var BufferStreams = require('bufferstreams');
 var gutil = require('gulp-util');
+var htmlmin = require('html-minifier');
+var through = require('through2');
 
 module.exports = function (opts) {
   'use strict';
@@ -18,12 +18,51 @@ module.exports = function (opts) {
     showStack: false
   };
 
-  return mapStream(function (file, cb) {
-    try {
-      file.contents = new Buffer(htmlmin.minify(String(file.contents), opts));
-    } catch (err) {
-      return cb(new gutil.PluginError('gulp-htmlmin', err, opts));
+  return through.obj(function(file, enc, cb) {
+    if (file.isNull()) {
+      cb(null, file);
+      return;
     }
-    cb(null, file);
+    
+    function minifyHtml(buf, done) {
+      var minified;
+
+      try {
+        minified = htmlmin.minify(String(buf), opts);
+      } catch (err) {
+        done(new gutil.PluginError('gulp-htmlmin', err, opts));
+        return;
+      }
+
+      done(null, new Buffer(minified));
+    };
+
+    var self = this;
+
+    if (file.isStream()) {
+      file.contents = file.contents.pipe(new BufferStreams(function(none, buf, done) {
+        minifyHtml(buf, function(err, contents) {
+          if (err) {
+            self.emit('error', err);
+            done(err);
+          } else {
+            done(null, contents);
+            self.push(file);
+          }
+          cb();
+        });
+      }));
+      return;
+    }
+
+    minifyHtml(file.contents, function(err, contents) {
+      if (err) {
+        self.emit('error', err);
+      } else {
+        file.contents = contents;
+        self.push(file);
+      }
+      cb();
+    });
   });
 };
