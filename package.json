@@ -37,8 +37,7 @@
     "chai": "^1.10.0",
     "mocha": "*",
     "simple-bufferstream": "0.0.4",
-    "vinyl": "^0.4.6",
-    "should": "*"
+    "vinyl": "^0.4.6"
   },
   "keywords": [
     "format",
