@@ -1,29 +1,20 @@
-/*
- * gulp-htmlmin
- * https://github.com/jonschlinkert/gulp-htmlmin
- *
- * Copyright (c) 2014 Jon Schlinkert
- * Licensed under the MIT license.
- */
+'use strict';
 
 var BufferStreams = require('bufferstreams');
+var extend = require('extend-shallow');
 var gutil = require('gulp-util');
 var htmlmin = require('html-minifier');
 var through = require('through2');
 
-module.exports = function (opts) {
-  'use strict';
-
-  opts = opts || {
-    showStack: false
-  };
+module.exports = function (options) {
+  var opts = extend({showStack: false}, options);
 
   return through.obj(function(file, enc, cb) {
     if (file.isNull()) {
       cb(null, file);
       return;
     }
-    
+
     function minifyHtml(buf, done) {
       var minified;
 
