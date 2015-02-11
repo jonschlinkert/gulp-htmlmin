@@ -21,10 +21,10 @@
     "test": "_mocha"
   },
   "dependencies": {
-    "bufferstreams": "0.0.2",
+    "bufferstreams": "1.0.1",
     "extend-shallow": "^0.2.0",
     "gulp-util": "^3.0.2",
-    "html-minifier": "^0.6.9",
+    "html-minifier": "^0.7.0",
     "through2": "^0.6.3"
   },
   "devDependencies": {
