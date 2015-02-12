@@ -25,7 +25,8 @@
     "extend-shallow": "^0.2.0",
     "gulp-util": "^3.0.2",
     "html-minifier": "^0.7.0",
-    "through2": "^0.6.3"
+    "through2": "^0.6.3",
+    "tryit": "^1.0.1"
   },
   "devDependencies": {
     "chai": "^1.10.0",

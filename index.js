@@ -5,6 +5,7 @@ var htmlmin = require('html-minifier');
 var extend = require('extend-shallow');
 var gutil = require('gulp-util');
 var through = require('through2');
+var tryit = require('tryit');
 
 module.exports = function (options) {
   var opts = extend({showStack: false}, options);
@@ -16,12 +17,16 @@ module.exports = function (options) {
     }
 
     function minifyHtml(buf, done) {
-      try {
-        done(null, new Buffer(htmlmin.minify(String(buf), opts)));
-      } catch (err) {
-        done(new gutil.PluginError('gulp-htmlmin', err, opts));
-        return;
-      }
+      var result;
+      tryit(function() {
+        result = new Buffer(htmlmin.minify(String(buf), opts));
+      }, function(err) {
+        if (err) {
+          done(new gutil.PluginError('gulp-htmlmin', err, opts));
+          return;
+        }
+        done(null, result);
+      });
     }
 
     var self = this;
