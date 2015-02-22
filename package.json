@@ -18,6 +18,7 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
+    "pretest": "jscs *.js test/*.js && eslint *.js test/*.js",
     "test": "_mocha"
   },
   "dependencies": {
@@ -41,4 +42,11 @@
     "minifier",
     "minify"
   ]
+  "jscsConfig": {
+    "preset": "google",
+    "disallowMultipleVarDecl": null,
+    "maximumLineLength": 98,
+    "requireBlocksOnNewline": true,
+    "validateLineBreaks": "LF"
+  }
 }

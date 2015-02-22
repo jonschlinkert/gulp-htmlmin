@@ -1,0 +1,9 @@
+env:
+  node: true
+  mocha: true
+rules:
+  eqeqeq: 2
+  block-scoped-var: 2
+  quotes:
+    - 2
+    - single
