@@ -46,8 +46,8 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 
 **Shinnosuke Watanabe**
 
-+ [github/jonschlinkert](https://github.com/shinnn)
-+ [twitter/jonschlinkert](http://twitter.com/shinnn_tw) 
++ [github/shinnn](https://github.com/shinnn)
++ [twitter/shinnn_tw](http://twitter.com/shinnn_tw) 
 
 ## License
 
