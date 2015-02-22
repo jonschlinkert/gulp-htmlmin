@@ -2,14 +2,12 @@
 
 var BufferStreams = require('bufferstreams');
 var htmlmin = require('html-minifier');
-var extend = require('extend-shallow');
 var gutil = require('gulp-util');
+var objectAssign = require('object-assign');
 var through = require('through2');
 var tryit = require('tryit');
 
-module.exports = function (options) {
-  var opts = extend({showStack: false}, options);
-
+module.exports = function(options) {
   return through.obj(function(file, enc, cb) {
     if (file.isNull()) {
       cb(null, file);
@@ -19,10 +17,11 @@ module.exports = function (options) {
     function minifyHtml(buf, done) {
       var result;
       tryit(function() {
-        result = new Buffer(htmlmin.minify(String(buf), opts));
+        result = new Buffer(htmlmin.minify(String(buf), options));
       }, function(err) {
         if (err) {
-          done(new gutil.PluginError('gulp-htmlmin', err, opts));
+          options = objectAssign({}, options, {fileName: file.path});
+          done(new gutil.PluginError('gulp-htmlmin', err, options));
           return;
         }
         done(null, result);

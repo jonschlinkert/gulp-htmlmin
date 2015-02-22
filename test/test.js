@@ -1,59 +1,57 @@
 'use strict';
 
 var fs = require('fs');
-var path = require('path');
 var bufferToStream = require('simple-bufferstream');
 var expect = require('chai').expect;
 var File = require('vinyl');
 var minify = require('..');
 
-var expectedNormal = fs.readFileSync(path.join(__dirname, 'expected/normal.html'), 'utf8');
-var expectedCollapse = fs.readFileSync(path.join(__dirname, 'expected/collapse.html'), 'utf8');
+var expectedNormal = fs.readFileSync('test/expected/normal.html', 'utf8');
+var expectedCollapse = fs.readFileSync('test/expected/collapse.html', 'utf8');
 
 var fakeFile = new File({
-  path: path.join(__dirname, 'fixtures/index.html'),
-  contents: fs.readFileSync(path.join(__dirname, 'fixtures/index.html'))
+  path: 'test/fixtures/index.html',
+  contents: fs.readFileSync('test/fixtures/index.html')
 });
 
 var fakeFileStream = fakeFile.clone();
-fakeFileStream.contents = bufferToStream(fs.readFileSync(path.join(__dirname, 'fixtures/index.html')));
+fakeFileStream.contents = bufferToStream(fs.readFileSync('test/fixtures/index.html'));
 
 var contents = '<<div>error in this file</div>';
 var errorFile = new File({
-  path: path.join(__dirname, 'fixtures/error.html'),
+  path: 'test/fixtures/error.html',
   contents: new Buffer(contents)
 });
 
-
-describe('gulp-htmlmin in buffer mode', function () {
-  it('should ignore empty file', function (done) {
+describe('gulp-htmlmin in buffer mode', function() {
+  it('should ignore empty file', function(done) {
     minify()
     .on('error', done)
-    .on('data', function(newFile){
-      expect(newFile.isNull()).to.be.true;
+    .on('data', function(file) {
+      expect(file.isNull()).to.equal(true);
       done();
     })
     .end(new File({}));
   });
 
-  it('should minify my HTML files', function (done) {
+  it('should minify my HTML files', function(done) {
     minify()
     .on('error', done)
-    .on('data', function(newFile){
-      expect(newFile).to.not.be.null;
-      expect(newFile.isBuffer()).to.be.true;
-      expect(String(newFile.contents)).to.equal(expectedNormal);
+    .on('data', function(file) {
+      expect(file).to.not.equal(null);
+      expect(file.isBuffer()).to.equal(true);
+      expect(String(file.contents)).to.equal(expectedNormal);
       done();
     })
     .end(fakeFile);
   });
 
-  it('should collapse whitespace', function (done) {
+  it('should collapse whitespace', function(done) {
     minify({collapseWhitespace: true})
     .on('error', done)
-    .on('data', function(newFile){
-      expect(newFile).to.not.be.null;
-      expect(String(newFile.contents)).to.equal(expectedCollapse);
+    .on('data', function(file) {
+      expect(file).to.not.equal(null);
+      expect(String(file.contents)).to.equal(expectedCollapse);
       done();
     })
     .end(fakeFile);
@@ -61,39 +59,43 @@ describe('gulp-htmlmin in buffer mode', function () {
 
   it('should emit a gulp error', function(done) {
     minify()
-    .on('error', function (err) {
+    .on('error', function(err) {
       expect(err.message).to.equal('Parse Error: ' + contents);
+      expect(err.fileName).to.equal(errorFile.path);
       done();
     })
-    .on('end', function () {
+    .on('end', function() {
       done(new Error('No error.'));
     })
     .end(errorFile);
   });
 
-  it('should emit a gulp error with a stack trace', function(done) {
+  it('should emit a plugin error with a stack trace', function(done) {
+    var originalOption = {showStack: true};
+
     minify({showStack: true})
-    .on('error', function (err) {
+    .on('error', function(err) {
       expect(err.message).to.equal('Parse Error: ' + contents);
-      expect(err.showStack).to.be.true;
+      expect(err.fileName).to.equal(errorFile.path);
+      expect(err.showStack).to.equal(true);
+      expect(originalOption).to.eql({showStack: true});
       done();
     })
-    .on('end', function () {
+    .on('end', function() {
       done(new Error('No error.'));
     })
     .end(errorFile);
   });
 });
 
-describe('gulp-htmlmin in stream mode', function () {
-
-  it('should minify my HTML files', function (done) {
+describe('gulp-htmlmin in stream mode', function() {
+  it('should minify my HTML files', function(done) {
     minify()
     .on('error', done)
-    .on('data', function(newFile){
-      expect(newFile).to.not.be.null;
-      expect(newFile.isStream()).to.be.true;
-      newFile.contents.on('data', function(data) {
+    .on('data', function(file) {
+      expect(file).to.not.equal(null);
+      expect(file.isStream()).to.equal(true);
+      file.contents.on('data', function(data) {
         expect(String(data)).to.equal('<div></div>');
       });
       done();
@@ -101,13 +103,13 @@ describe('gulp-htmlmin in stream mode', function () {
     .end(new File({contents: bufferToStream('<div   ></div>')}));
   });
 
-  it('should emit a gulp error', function(done) {
+  it('should emit a plugin error', function(done) {
     minify()
-    .on('error', function (err) {
+    .on('error', function(err) {
       expect(err.message).to.equal('Parse Error: ' + contents);
       done();
     })
-    .on('end', function () {
+    .on('end', function() {
       done(new Error('No error.'));
     })
     .end(new File({contents: bufferToStream(contents)}));
