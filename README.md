@@ -35,12 +35,17 @@ npm i && mocha
 
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/jonschlinkert/gulp-htmlmin/issues)
 
-## Author
+## Authors
 
 **Jon Schlinkert**
  
 + [github/jonschlinkert](https://github.com/jonschlinkert)
 + [twitter/jonschlinkert](http://twitter.com/jonschlinkert) 
+
+**Shinnosuke Watanabe**
+
++ [github/shinnn](https://github.com/shinnn)
++ [twitter/shinnn_tw](http://twitter.com/shinnn_tw) 
 
 ## License
 
