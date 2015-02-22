@@ -9,14 +9,21 @@
   "repository": "jonschlinkert/gulp-htmlmin",
   "license": {
     "type": "MIT",
-    "url": "https://github.com/jonschlinkert/gulp-htmlmin/blob/master/LICENSE-MIT"
+    "url": "https://github.com/jonschlinkert/gulp-htmlmin/blob/master/LICENSE"
   },
+  "keywords": [
+    "format",
+    "gulp",
+    "gulpplugin",
+    "htm",
+    "html",
+    "minifier",
+    "minification",
+    "minify"
+  ],
   "files": [
     "index.js"
   ],
-  "engines": {
-    "node": ">= 0.8.0"
-  },
   "scripts": {
     "pretest": "jscs *.js test/*.js && eslint *.js test/*.js",
     "test": "_mocha"
@@ -30,18 +37,13 @@
     "tryit": "^1.0.1"
   },
   "devDependencies": {
-    "chai": "^1.10.0",
+    "chai": "^2.0.0",
+    "eslint": "^0.15.0",
+    "jscs": "^1.11.3",
     "mocha": "*",
-    "simple-bufferstream": "0.0.4",
+    "simple-bufferstream": "^0.0.4",
     "vinyl": "^0.4.6"
   },
-  "keywords": [
-    "format",
-    "gulpplugin",
-    "html",
-    "minifier",
-    "minify"
-  ]
   "jscsConfig": {
     "preset": "google",
     "disallowMultipleVarDecl": null,
