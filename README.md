@@ -4,7 +4,7 @@
 
 ## Install with [npm](npmjs.org)
 
-```bash
+```sh
 npm i gulp-htmlmin --save-dev
 ```
 
@@ -15,7 +15,7 @@ var gulp = require('gulp');
 var htmlmin = require('gulp-htmlmin');
 
 gulp.task('minify', function() {
-  gulp.src('src/*.html')
+  return gulp.src('src/*.html')
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest('dist'))
 });
@@ -27,11 +27,12 @@ See the [html-minifer docs](https://github.com/kangax/html-minifier) for options
 
 Install dev dependencies:
 
-```bash
-node i -d && mocha
+```sh
+npm i && mocha
 ```
 
 ## Contributing
+
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/jonschlinkert/gulp-htmlmin/issues)
 
 ## Author
@@ -41,7 +42,15 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 + [github/jonschlinkert](https://github.com/jonschlinkert)
 + [twitter/jonschlinkert](http://twitter.com/jonschlinkert) 
 
+## Maintainer
+
+**Shinnosuke Watanabe**
+
++ [github/jonschlinkert](https://github.com/shinnn)
++ [twitter/jonschlinkert](http://twitter.com/shinnn_tw) 
+
 ## License
+
 Copyright (c) 2014-2015 Jon Schlinkert  
 Released under the MIT license
 
