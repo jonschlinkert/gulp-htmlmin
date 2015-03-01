@@ -21,7 +21,7 @@ gulp.task('minify', function() {
 });
 ```
 
-See the [html-minifer docs](https://github.com/kangax/html-minifier) for options.
+See the [html-minifier docs](https://github.com/kangax/html-minifier) for options.
 
 ## Run tests
 
