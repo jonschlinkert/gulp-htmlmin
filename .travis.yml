@@ -1,5 +1,7 @@
 sudo: false
+git:
+  depth: 2
 language: node_js
 node_js:
   - iojs
-  - "0.12"
+  - node
