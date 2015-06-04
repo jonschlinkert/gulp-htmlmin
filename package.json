@@ -7,10 +7,7 @@
     "url": "https://github.com/jonschlinkert"
   },
   "repository": "jonschlinkert/gulp-htmlmin",
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/jonschlinkert/gulp-htmlmin/blob/master/LICENSE"
-  },
+  "license": "MIT",
   "keywords": [
     "format",
     "gulp",
@@ -25,30 +22,23 @@
     "index.js"
   ],
   "scripts": {
-    "pretest": "jscs *.js test/*.js && eslint *.js test/*.js",
+    "pretest": "eslint --config node_modules/@shinnn/eslintrc-node/rc.json index.js test",
     "test": "_mocha"
   },
   "dependencies": {
     "bufferstreams": "1.0.1",
-    "gulp-util": "^3.0.2",
-    "html-minifier": "^0.7.0",
-    "object-assign": "^2.0.0",
-    "through2": "^0.6.3",
+    "gulp-util": "^3.0.5",
+    "html-minifier": "^0.7.2",
+    "object-assign": "^3.0.0",
+    "through2": "^0.6.5",
     "tryit": "^1.0.1"
   },
   "devDependencies": {
-    "chai": "^2.0.0",
-    "eslint": "^0.15.0",
-    "jscs": "^1.11.3",
+    "@shinnn/eslintrc-node": "^1.0.2",
+    "chai": "^3.0.0",
+    "eslint": "^0.22.1",
     "mocha": "*",
-    "simple-bufferstream": "^0.0.4",
-    "vinyl": "^0.4.6"
-  },
-  "jscsConfig": {
-    "preset": "google",
-    "disallowMultipleVarDecl": null,
-    "maximumLineLength": 98,
-    "requireBlocksOnNewline": true,
-    "validateLineBreaks": "LF"
+    "simple-bufferstream": "^1.0.0",
+    "vinyl": "^0.5.0"
   }
 }
