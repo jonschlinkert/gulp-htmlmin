@@ -29,19 +29,19 @@
     "test": "_mocha"
   },
   "dependencies": {
-    "bufferstreams": "1.0.1",
-    "gulp-util": "^3.0.5",
+    "bufferstreams": "^1.1.0",
+    "gulp-util": "^3.0.6",
     "html-minifier": "^0.7.2",
-    "object-assign": "^3.0.0",
-    "readable-stream": "^2.0.0",
+    "object-assign": "^4.0.1",
+    "readable-stream": "^2.0.2",
     "tryit": "^1.0.1"
   },
   "devDependencies": {
     "@shinnn/eslintrc-node": "^1.0.2",
-    "chai": "^3.0.0",
-    "eslint": "^0.23.0",
+    "chai": "^3.2.0",
+    "eslint": "^0.24.0",
     "mocha": "*",
     "simple-bufferstream": "^1.0.0",
-    "vinyl": "^0.5.0"
+    "vinyl": "^0.5.1"
   }
 }
