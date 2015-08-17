@@ -7,10 +7,10 @@ var objectAssign = require('object-assign');
 var Transform = require('readable-stream/transform');
 var tryit = require('tryit');
 
-module.exports = function(options) {
+module.exports = function gulpHtmlmin(options) {
   return new Transform({
     objectMode: true,
-    transform: function(file, enc, cb) {
+    transform: function htmlminTransform(file, enc, cb) {
       if (file.isNull()) {
         cb(null, file);
         return;
