@@ -2,7 +2,7 @@
 
 > gulp plugin to minify HTML.
 
-## Install with [npm](npmjs.org)
+## Install with [npm](https://www.npmjs.com)
 
 ```sh
 npm i gulp-htmlmin --save-dev
