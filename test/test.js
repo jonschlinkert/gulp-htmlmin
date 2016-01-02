@@ -80,6 +80,14 @@ describe('gulp-html-minifier HTML minifier', function () {
 		});
 		stream.write(fakeFile);
 	});
+	it('should return file.contents as a buffer with lint option', function (done) {
+		var stream = minify({ lint: true });
+		stream.once('data', function(newFile){
+			expect(newFile.contents).to.be.an.instanceOf(Buffer);
+			done();
+		});
+		stream.write(fakeFile);
+	});
 	it('should throw a gulp error', function(done) {
 		var stream = minify();
 		stream.on('error', function (err) {

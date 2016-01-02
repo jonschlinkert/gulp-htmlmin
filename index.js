@@ -8,11 +8,16 @@
  */
 var es = require('event-stream'),
 	htmlmin = require('html-minifier'),
+	HTMLLint = require('html-minifier/src/htmllint').HTMLLint,
 	gutil = require('gulp-util');
 module.exports = function (options) {
 	options = options || {
 		showStack: false,
 	};	
+
+	if (options.lint) {
+		options.lint = new HTMLLint();
+	}
 	// snipets stripPath, toArray & unixify based on gulp-inject
 	// https://github.com/klei/gulp-inject/blob/master/index.js
 	function ignorePath (basedir, filepath) {
