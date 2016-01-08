@@ -1,7 +1,7 @@
 {
   "name": "gulp-html-minifier",
   "description": "Minify HTML with html-minifier.",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "homepage": "https://github.com/origin1tech/gulp-html-minifier",
   "author": {
     "name": "Origin1 Technologies",
@@ -34,7 +34,8 @@
   "dependencies": {
     "event-stream": "^3.0.20",
     "gulp-util": "^2.2.20",
-    "html-minifier": "^1.0.1"
+    "html-minifier": "^1.1.1",
+    "htmllint": "^0.2.7"
   },
   "keywords": [
     "gulpplugin",
