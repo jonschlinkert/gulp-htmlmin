@@ -37,9 +37,9 @@
     "tryit": "^1.0.1"
   },
   "devDependencies": {
-    "@shinnn/eslint-config-node-legacy": "^1.0.0",
+    "@shinnn/eslint-config-node-legacy": "^2.0.0",
     "chai": "^3.4.0",
-    "eslint": "^1.7.3",
+    "eslint": "^2.4.0",
     "mocha": "*",
     "simple-bufferstream": "^1.0.0",
     "vinyl": "^1.1.0"
