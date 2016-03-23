@@ -2,6 +2,8 @@
 
 > gulp plugin to minify HTML.
 
+*Issues with the HTML parser and output should be reported on the [html-minifier](https://github.com/kangax/html-minifier/issues) issue tracker.*
+
 ## Install with [npm](npmjs.org)
 
 ```sh
