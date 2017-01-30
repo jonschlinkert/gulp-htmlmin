@@ -1,8 +1,8 @@
-# gulp-htmlmin [![NPM version](https://badge.fury.io/js/gulp-htmlmin.svg)](http://badge.fury.io/js/gulp-htmlmin)  [![Build Status](https://travis-ci.org/jonschlinkert/gulp-htmlmin.svg)](https://travis-ci.org/jonschlinkert/gulp-htmlmin) 
+# gulp-htmlmin [![NPM version](https://badge.fury.io/js/gulp-htmlmin.svg)](http://badge.fury.io/js/gulp-htmlmin)  [![Build Status](https://travis-ci.org/jonschlinkert/gulp-htmlmin.svg)](https://travis-ci.org/jonschlinkert/gulp-htmlmin)
 
 > gulp plugin to minify HTML.
 
-*Issues with the HTML parser and output should be reported on the [html-minifier](https://github.com/kangax/html-minifier/issues) issue tracker.*
+*Issues with the HTML parser and output must be reported on the [html-minifier](https://github.com/kangax/html-minifier/issues) issue tracker.*
 
 ## Install with [npm](npmjs.org)
 
@@ -40,14 +40,14 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 ## Authors
 
 **Jon Schlinkert**
- 
+
 + [github/jonschlinkert](https://github.com/jonschlinkert)
-+ [twitter/jonschlinkert](http://twitter.com/jonschlinkert) 
++ [twitter/jonschlinkert](http://twitter.com/jonschlinkert)
 
 **Shinnosuke Watanabe**
 
 + [github/shinnn](https://github.com/shinnn)
-+ [twitter/shinnn_tw](http://twitter.com/shinnn_tw) 
++ [twitter/shinnn_tw](http://twitter.com/shinnn_tw)
 
 ## License
 
