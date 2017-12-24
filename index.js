@@ -2,7 +2,6 @@
 
 var BufferStreams = require('bufferstreams');
 var htmlmin = require('html-minifier');
-var objectAssign = require('object-assign');
 var PluginError = require('plugin-error');
 var Transform = require('readable-stream/transform');
 var tryit = require('tryit');
@@ -22,7 +21,7 @@ module.exports = function gulpHtmlmin(options) {
           result = new Buffer(htmlmin.minify(String(buf), options));
         }, function(err) {
           if (err) {
-            options = objectAssign({}, options, {fileName: file.path});
+            options = Object.assign({}, options, {fileName: file.path});
             done(new PluginError('gulp-htmlmin', err, options));
             return;
           }
