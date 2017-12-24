@@ -30,8 +30,8 @@
   },
   "dependencies": {
     "bufferstreams": "^1.1.0",
-    "gulp-util": "^3.0.7",
     "html-minifier": "^3.0.3",
+    "plugin-error": "^0.1.2",
     "readable-stream": "^2.0.2",
     "tryit": "^1.0.1"
   },
