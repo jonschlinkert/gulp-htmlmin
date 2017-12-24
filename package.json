@@ -2,28 +2,45 @@
   "name": "gulp-htmlmin",
   "description": "gulp plugin to minify HTML.",
   "version": "3.0.0",
-  "author": {
-    "name": "Jon Schlinkert",
-    "url": "https://github.com/jonschlinkert"
-  },
+  "homepage": "https://github.com/jonschlinkert/gulp-htmlmin",
+  "authors": [
+    {
+      "name": "Jon Schlinkert",
+      "url": "https://github.com/jonschlinkert",
+      "twitter": "jonschlinkert"
+    },
+    {
+      "name": "Shinnosuke Watanabe",
+      "url": "https://github.com/shinnn",
+      "twitter": "shinnn_tw"
+    }
+  ],
   "contributors": [
-    "Shinnosuke Watanabe <snnskwtnb@gmail.com> (https://github.com/shinnn)"
+    "Shinnosuke Watanabe (https://shinnn.github.io)",
+    "Jon Schlinkert (http://twitter.com/jonschlinkert)",
+    "Brian Woodward (https://twitter.com/doowb)",
+    "Steve Lacy (http://slacy.me)",
+    "(https://github.com/TheDancingCode)",
+    "Chris Watson (https://github.com/cwonrails)",
+    "Igor Adamenko (http://igoradamenko.com)",
+    "Joel Arvidsson (http://twitter.com/trastknast)",
+    "John-David Dalton (http://twitter.com/jdalton)",
+    "Jose Chirivella (https://www.jchirivella.com)",
+    "Nico Schlömer (https://github.com/nschloe)",
+    "Tom Byrer (https://github.com/tomByrer)"
   ],
   "repository": "jonschlinkert/gulp-htmlmin",
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/gulp-htmlmin/issues"
+  },
   "license": "MIT",
-  "keywords": [
-    "format",
-    "gulp",
-    "gulpplugin",
-    "htm",
-    "html",
-    "minifier",
-    "minification",
-    "minify"
-  ],
   "files": [
     "index.js"
   ],
+  "main": "index.js",
+  "engines": {
+    "node": ">= 4.0"
+  },
   "scripts": {
     "pretest": "eslint --config @shinnn/node-legacy index.js test",
     "test": "_mocha"
@@ -39,8 +56,32 @@
     "@shinnn/eslint-config-node-legacy": "^2.0.0",
     "chai": "^3.4.0",
     "eslint": "^2.4.0",
+    "gulp-format-md": "^1.0.0",
     "mocha": "*",
     "simple-bufferstream": "^1.0.0",
     "vinyl": "^1.1.0"
+  },
+  "keywords": [
+    "format",
+    "gulp",
+    "gulpplugin",
+    "htm",
+    "html",
+    "minification",
+    "minifier",
+    "minify"
+  ],
+  "verb": {
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "lint": {
+      "reflinks": true
+    }
   }
 }
