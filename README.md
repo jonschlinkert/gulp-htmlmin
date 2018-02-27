@@ -27,6 +27,11 @@ gulp.task('minify', function() {
 
 See the [html-minifer docs](https://github.com/kangax/html-minifier) for options.
 
+## FS-Webdev Fork
+
+We forked and pinned the html-minifier to 3.2.3 for reasons and jonschlinkert wasn't going to do that.
+We also later added an option to pass in an `{ ignoreErrors: true }` option to `htmlmin( {...} )` to allow the minfier to fail silently an continue on (otherwise it breaks everything). This is opt-in so no breaking changes.
+
 ## About
 
 ### Contributing
