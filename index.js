@@ -22,7 +22,7 @@ module.exports = function gulpHtmlmin(options) {
         }, function(err) {
           if (err) {
             options = Object.assign({}, options, {fileName: file.path});
-            done(new PluginError('gulp-htmlmin', err, options));
+            done(options.ignoreErrors ? null : new PluginError('gulp-htmlmin', err, options), null);
             return;
           }
           done(null, result);
