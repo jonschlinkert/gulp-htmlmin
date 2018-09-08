@@ -11,29 +11,31 @@ module.exports = options => {
       return;
     }
 
-    const isStream = file.isStream();
-    const minify = (buf, cb) => {
+    const minify = (buf, _, cb) => {
       try {
-        const contents = Buffer.from(htmlmin.minify(buf.toString(), options));
-        if (!isStream) {
+        let contents = Buffer.from(htmlmin.minify(buf.toString(), options));
+        if (next === cb) {
           file.contents = contents;
           cb(null, file);
-        } else {
-          cb(null, contents);
+          return;
         }
+        cb(null, contents);
+        next(null, file);
       } catch (err) {
-        const opts = Object.assign({}, options, { fileName: file.path });
-        const error = new PluginError('gulp-htmlmin', err, opts);
-        if (isStream) this.emit('error', error);
+        let opts = Object.assign({}, options, { fileName: file.path });
+        let error = new PluginError('gulp-htmlmin', err, opts);
+        if (next !== cb) {
+          next(error);
+          return;
+        }
         cb(error);
       }
     };
 
-    if (isStream) {
-      file.contents = file.contents.pipe(through((buf, enc, cb) => minify(buf, cb)));
-      next(null, file);
+    if (file.isStream()) {
+      file.contents = file.contents.pipe(through(minify));
     } else {
-      minify(file.contents, next);
+      minify(file.contents, null, next);
     }
   });
 };
