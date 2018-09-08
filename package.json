@@ -16,18 +16,18 @@
     }
   ],
   "contributors": [
-    "Shinnosuke Watanabe (https://shinnn.github.io)",
-    "Jon Schlinkert (http://twitter.com/jonschlinkert)",
     "Brian Woodward (https://twitter.com/doowb)",
-    "Steve Lacy (http://slacy.me)",
-    "(https://github.com/TheDancingCode)",
     "Chris Watson (https://github.com/cwonrails)",
     "Igor Adamenko (http://igoradamenko.com)",
     "Joel Arvidsson (http://twitter.com/trastknast)",
     "John-David Dalton (http://twitter.com/jdalton)",
+    "Jon Schlinkert (http://twitter.com/jonschlinkert)",
     "Jose Chirivella (https://www.jchirivella.com)",
     "Nico Schlömer (https://github.com/nschloe)",
-    "Tom Byrer (https://github.com/tomByrer)"
+    "Shinnosuke Watanabe (https://shinnn.github.io)",
+    "Steve Lacy (http://slacy.me)",
+    "Tom Byrer (https://github.com/tomByrer)",
+    "(https://github.com/TheDancingCode)"
   ],
   "repository": "jonschlinkert/gulp-htmlmin",
   "bugs": {
@@ -39,27 +39,23 @@
   ],
   "main": "index.js",
   "engines": {
-    "node": ">= 4.0"
+    "node": ">= 6.0"
   },
   "scripts": {
-    "pretest": "eslint --config @shinnn/node-legacy index.js test",
-    "test": "_mocha"
+    "pretest": "eslint index.js test",
+    "test": "mocha"
   },
   "dependencies": {
-    "bufferstreams": "^1.1.0",
-    "html-minifier": "^3.0.3",
-    "plugin-error": "^0.1.2",
-    "readable-stream": "^2.0.2",
-    "tryit": "^1.0.1"
+    "html-minifier": "^3.5.20",
+    "plugin-error": "^1.0.1",
+    "through2": "^2.0.3"
   },
   "devDependencies": {
-    "@shinnn/eslint-config-node-legacy": "^2.0.0",
-    "chai": "^3.4.0",
-    "eslint": "^2.4.0",
+    "eslint": "^5.5.0",
+    "gulp": "^3.9.1",
     "gulp-format-md": "^1.0.0",
-    "mocha": "*",
-    "simple-bufferstream": "^1.0.0",
-    "vinyl": "^1.1.0"
+    "mocha": "^5.2.0",
+    "vinyl": "^2.2.0"
   },
   "keywords": [
     "format",
@@ -67,6 +63,7 @@
     "gulpplugin",
     "htm",
     "html",
+    "htmlmin",
     "minification",
     "minifier",
     "minify"

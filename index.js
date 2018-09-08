@@ -1,61 +1,39 @@
 'use strict';
 
-var BufferStreams = require('bufferstreams');
-var htmlmin = require('html-minifier');
-var PluginError = require('plugin-error');
-var Transform = require('readable-stream/transform');
-var tryit = require('tryit');
+const PluginError = require('plugin-error');
+const htmlmin = require('html-minifier');
+const through = require('through2');
 
-module.exports = function gulpHtmlmin(options) {
-  return new Transform({
-    objectMode: true,
-    transform: function htmlminTransform(file, enc, cb) {
-      if (file.isNull()) {
-        cb(null, file);
-        return;
-      }
+module.exports = options => {
+  return through.obj(function(file, enc, next) {
+    if (file.isNull()) {
+      next(null, file);
+      return;
+    }
 
-      function minifyHtml(buf, done) {
-        var result;
-        tryit(function() {
-          result = new Buffer(htmlmin.minify(String(buf), options));
-        }, function(err) {
-          if (err) {
-            options = Object.assign({}, options, {fileName: file.path});
-            done(new PluginError('gulp-htmlmin', err, options));
-            return;
-          }
-          done(null, result);
-        });
-      }
-
-      var self = this;
-
-      if (file.isStream()) {
-        file.contents.pipe(new BufferStreams(function(none, buf, done) {
-          minifyHtml(buf, function(err, contents) {
-            if (err) {
-              self.emit('error', err);
-              done(err);
-            } else {
-              done(null, contents);
-              self.push(file);
-            }
-            cb();
-          });
-        }));
-        return;
-      }
-
-      minifyHtml(file.contents, function(err, contents) {
-        if (err) {
-          self.emit('error', err);
-        } else {
+    const isStream = file.isStream();
+    const minify = (buf, cb) => {
+      try {
+        const contents = Buffer.from(htmlmin.minify(buf.toString(), options));
+        if (!isStream) {
           file.contents = contents;
-          self.push(file);
+          cb(null, file);
+        } else {
+          cb(null, contents);
         }
-        cb();
-      });
+      } catch (err) {
+        const opts = Object.assign({}, options, { fileName: file.path });
+        const error = new PluginError('gulp-htmlmin', err, opts);
+        if (isStream) this.emit('error', error);
+        cb(error);
+      }
+    };
+
+    if (isStream) {
+      file.contents = file.contents.pipe(through((buf, enc, cb) => minify(buf, cb)));
+      next(null, file);
+    } else {
+      minify(file.contents, next);
     }
   });
 };
