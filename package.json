@@ -47,12 +47,12 @@
   "dependencies": {
     "html-minifier": "^4.0.0",
     "plugin-error": "^1.0.1",
-    "through2": "^2.0.3"
+    "through2": "^3.0.1"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-format-md": "^1.0.0",
-    "mocha": "^5.2.0",
+    "gulp": "^4.0.0",
+    "gulp-format-md": "^2.0.0",
+    "mocha": "^6.1.1",
     "vinyl": "^2.2.0"
   },
   "keywords": [
