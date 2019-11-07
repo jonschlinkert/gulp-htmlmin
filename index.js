@@ -1,7 +1,7 @@
 'use strict';
 
 const PluginError = require('plugin-error');
-const htmlmin = require('html-minifier');
+const htmlmin = require('html-minifier-terser');
 const through = require('through2');
 
 module.exports = options => {
